@@ -9,6 +9,13 @@ module.exports = {
     'plugin:vue/essential',
     '@vue/airbnb',
   ],
+  settings: {
+    'import/resolver': {
+      webpack: {
+        config: require.resolve('@vue/cli-service/webpack.config.js')
+      }
+    }
+  },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
@@ -17,4 +24,3 @@ module.exports = {
     parser: 'babel-eslint',
   },
 };
-z

@@ -1,12 +1,20 @@
-// import { shallowMount } from '@vue/test-utils';
-// import Start from '@/components/Start.vue';
+import { mount, createLocalVue } from '@vue/test-utils';
+import Start from '@/components/Start.vue';
+import Vuetify from 'vuetify';
 
-// describe('Start.vue', () => {
-//   it('renders props.msg when passed', () => {
-//     const msg = 'new message';
-//     const wrapper = shallowMount(Start, {
-//       propsData: { msg },
-//     });
-//     expect(wrapper.text()).toMatch(msg);
-//   });
-// });
+describe('Start.vue', () => {
+  const localVue = createLocalVue();
+  localVue.use(Vuetify);
+
+  const msg = 'new message';
+  const wrapper = mount(Start, {
+    localVue,
+    propsData: { msg },
+  });
+  it('renders props.msg when passed', () => {
+    expect(wrapper.text()).toMatch(msg);
+  });
+  it('has a button', () => {
+    expect(wrapper.contains('button')).toBe(true);
+  });
+});
