@@ -6,16 +6,13 @@
           <h1>Sweet Shopping Cart</h1>
         </v-flex>
         <v-flex xs2>
-          <Counter />
+          <Cart :cart="cart" />
         </v-flex>
       </v-layout>
     </v-toolbar>
     <v-layout>
-      <v-flex xs9>
+      <v-flex xs12>
         <Items :items="items" />
-      </v-flex>
-      <v-flex xs3>
-        <Cart :cart="cart" />
       </v-flex>
     </v-layout>
   </v-container>
@@ -24,7 +21,6 @@
 <script>
   import Items from '@components/Items.vue';
   import Cart from '@components/Cart.vue';
-  import Counter from '@components/Counter.vue';
   import eventBus from '@utils/event-bus';
   import { mapState } from 'vuex';
   import _ from 'underscore';
@@ -33,7 +29,6 @@ export default {
   components: {
     Items,
     Cart,
-    Counter,
   },
   data() {
     return {};
