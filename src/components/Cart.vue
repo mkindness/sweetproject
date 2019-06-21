@@ -55,7 +55,7 @@ export default {
   },
   computed: {
     count() {
-      return this.$store.state.cart.length;
+      return this.calcCartCount();
     },
     subTotal() {
       return this.calcSubTotal();
@@ -76,6 +76,10 @@ export default {
     updateQuantity(item, quantity) {
       // @TODO check to see it the quantity is >=  available stock.
       this.$store.dispatch('updateQuantity', { item, quantity });
+    },
+    calcCartCount() {
+      const sum = this.cart.reduce((s, f) => s + +f.cartQuantity, 0);
+      return sum;
     },
   },
 };
