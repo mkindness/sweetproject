@@ -18,11 +18,8 @@
             <p>{{ item.available }} in stock!</p>
             <p><strong>Price: {{ '$' + item.price }}</strong></p>
             <v-layout>
-              <v-flex sm12 md12 lg6 pr-2>
-                <v-text-field v-model="quantity" type="number" label="Quantity"></v-text-field>
-              </v-flex>
-              <v-flex sm12 md12 lg6 pa-2>
-                <v-btn depressed color="indigo white--text" @click="addToCart(item)">Add To Cart</v-btn>
+              <v-flex xs12 pa-2>
+                <v-btn class="add-cart" depressed color="indigo white--text" @click="addToCart(item)">Add To Cart</v-btn>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -35,24 +32,30 @@
 
 <script>
   import eventBus from '@utils/event-bus';
+  import _ from 'underscore'
 
   export default {
     props: {
       items: {
         type: Array,
         default: () => {
-          return [];
+          return []
         }
       },
     },
     data() {
       return {
-        quantity: '',
+        quantity: null,
       }
     },
     methods: {
-      addToCart(item, quantity) {
+      addToCart(item) {
+        // @TODO check if item is in cart and disable button.
+        item.cartQuantity = 1;
         eventBus.$emit('addToCart', item);
+      },
+      updateQuantity(item, quantity) {
+        eventBus.$emit('updateQuantity', { item, quantity })
       }
     },
     mounted() {
@@ -60,3 +63,9 @@
     }
   }
 </script>
+
+<style lang="scss">
+.add-cart {
+  float: right;
+}
+</style>

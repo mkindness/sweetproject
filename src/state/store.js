@@ -1,10 +1,17 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import _ from 'underscore';
+import VuexPersist from 'vuex-persist';
 
 Vue.use(Vuex);
 
+const vuexLocalStorage = new VuexPersist({
+  key: 'vuex',
+  storage: window.localStorage,
+});
+
 export default new Vuex.Store({
+  plugins: [vuexLocalStorage.plugin],
   state: {
     items: [],
     cart: [],
@@ -24,11 +31,14 @@ export default new Vuex.Store({
       state.cart.push(item);
     },
     loadItems(state, items) {
-      // state.items.push(items);
       state.items = items;
     },
     removeItem(state, item) {
-      // state.cart = _.filter(state.items, i => i.itemid === item.itemid);
+      state.cart = _.filter(state.cart, i => i.itemid !== item.itemid);
+    },
+    updateQuantity(state, payload) {
+      const itemToUpdate = state.cart.find((i) => { return i.itemid === payload.item.itemid; });
+      itemToUpdate.cartQuantity = payload.quantity;
     },
   },
   actions: {
@@ -88,6 +98,9 @@ export default new Vuex.Store({
     },
     removeItem({ commit }, payload) {
       commit('removeItem', payload);
+    },
+    updateQuantity({ commit }, payload) {
+      commit('updateQuantity', payload);
     },
   },
 });

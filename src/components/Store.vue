@@ -22,7 +22,7 @@
   import Items from '@components/Items.vue';
   import Cart from '@components/Cart.vue';
   import eventBus from '@utils/event-bus';
-  import { mapState } from 'vuex';
+  import { mapGetters } from 'vuex';
   import _ from 'underscore';
 
 export default {
@@ -31,9 +31,10 @@ export default {
     Cart,
   },
   data() {
-    return {};
+    return {
+    };
   },
-  computed: mapState([
+  computed: mapGetters([
     'items',
     'cart',
   ]),
@@ -43,6 +44,12 @@ export default {
     }
     eventBus.$on('addToCart', (item) => {
       this.dispatchAction('addItem', item);
+    });
+    eventBus.$on('removeFromCart', (item) => {
+      this.dispatchAction('removeItem', item);
+    });
+    eventBus.$on('updateQuantity', (payload) => {
+      this.dispatchAction('updateQuantity', payload);
     });
   },
   methods: {

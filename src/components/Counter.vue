@@ -2,7 +2,7 @@
   <div>
     <v-badge right>
       <template v-slot:badge>
-        <span>{{ count || 0 }}</span>
+        <span>{{ count }}</span>
       </template>
       <v-icon>fas fa-shopping-cart</v-icon>
     </v-badge>
@@ -11,12 +11,11 @@
 
 <script>
 export default {
-  computed: {
-    count() {
-      this.$store.state.cart.length;
+  props: {
+    count: {
+      type: Number,
+      default: 0
     }
   },
-  mounted() {
-  }
 }
 </script>
