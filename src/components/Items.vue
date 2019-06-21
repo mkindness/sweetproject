@@ -19,7 +19,9 @@
             <p><strong>Price: {{ '$' + item.price }}</strong></p>
             <v-layout>
               <v-flex xs12 pa-2>
-                <v-btn class="add-cart" depressed color="indigo white--text"
+                <v-btn v-if="itemInCart(item.itemid) !== undefined" class="add-cart" depressed
+                color="primary" @click="removeFromCart(item)">Remove</v-btn>
+                <v-btn v-else class="add-cart" depressed color="indigo white--text"
                 @click="addToCart(item)">Add To Cart</v-btn>
               </v-flex>
             </v-layout>
@@ -52,6 +54,12 @@ export default {
     },
     updateQuantity(item, quantity) {
       this.$store.dispatch('updateQuantity', { item, quantity });
+    },
+    itemInCart(id) {
+      return this.$store.state.cart.find(i => i.itemid === id);
+    },
+    removeFromCart(item) {
+      this.$store.dispatch('removeItem', item);
     },
   },
 };
