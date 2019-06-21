@@ -21,7 +21,6 @@
 <script>
 import Items from '@components/Items.vue';
 import Cart from '@components/Cart.vue';
-import eventBus from '@utils/event-bus';
 import { mapGetters } from 'vuex';
 import _ from 'underscore';
 
@@ -36,22 +35,8 @@ export default {
   ]),
   created() {
     if (_.isEmpty(this.$store.state.items)) {
-      this.dispatchAction('loadItems');
+      this.$store.dispatch('loadItems');
     }
-    eventBus.$on('addToCart', (item) => {
-      this.dispatchAction('addItem', item);
-    });
-    eventBus.$on('removeFromCart', (item) => {
-      this.dispatchAction('removeItem', item);
-    });
-    eventBus.$on('updateQuantity', (payload) => {
-      this.dispatchAction('updateQuantity', payload);
-    });
-  },
-  methods: {
-    async dispatchAction(action, payload) {
-      await this.$store.dispatch(action, payload);
-    },
   },
 };
 </script>

@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import eventBus from '@utils/event-bus';
-
 export default {
   props: {
     items: {
@@ -50,10 +48,10 @@ export default {
     addToCart(item) {
       // @TODO check if item is in cart and disable button.
       item.cartQuantity = 1;
-      eventBus.$emit('addToCart', item);
+      this.$store.dispatch('addItem', item);
     },
     updateQuantity(item, quantity) {
-      eventBus.$emit('updateQuantity', { item, quantity });
+      this.$store.dispatch('updateQuantity', { item, quantity });
     },
   },
 };

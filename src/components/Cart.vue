@@ -42,7 +42,6 @@
 
 <script>
 import Counter from '@components/Counter.vue';
-import eventBus from '@utils/event-bus';
 
 export default {
   components: {
@@ -63,9 +62,6 @@ export default {
     },
   },
   methods: {
-    // @TODO Need to investigate this more.
-    // For some reason although the central state is updated with the new cartQuantity
-    // it's not propagating down to the Cart child until the next event fires. ¯\_(ツ)_/¯
     calcSubTotal() {
       let amount = null;
       this.cart.forEach((item) => {
@@ -75,11 +71,11 @@ export default {
       return amount;
     },
     removeItem(item) {
-      eventBus.$emit('removeFromCart', item);
+      this.$store.dispatch('removeItem', item);
     },
     updateQuantity(item, quantity) {
       // @TODO check to see it the quantity is >=  available stock.
-      eventBus.$emit('updateQuantity', { item, quantity });
+      this.$store.dispatch('updateQuantity', { item, quantity });
     },
   },
 };
