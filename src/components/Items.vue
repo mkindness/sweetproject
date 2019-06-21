@@ -58,9 +58,6 @@
         eventBus.$emit('updateQuantity', { item, quantity })
       }
     },
-    mounted() {
-      // debugger;
-    }
   }
 </script>
 

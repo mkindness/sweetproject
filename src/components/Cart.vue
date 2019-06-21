@@ -100,22 +100,8 @@ export default {
     }
   }
   .v-list {
-    /* display: table; */
     &__tile {
-      /* display: table; */
     }
   }
 }
 </style>
-
-<!-- {
-  image: 'https://media.sweetwater.com/images/items/120/SM57-medium.jpg',
-  url: 'https://www.sweetwater.com/store/detail/SM57',
-  manufacturer: 'Shure',
-  productName: 'Sm57',
-  itemid: 'SM57',
-  quantity: 1,
-  price: 99.00,
-  description: 'Dynamic Microphone with Cardioid Pickup Pattern, 40Hz-15kHz Frequency Response, Low Impedance, Includes Stand Adapter, and Zippered Carrying Case',
-  available: 9,
-} -->
