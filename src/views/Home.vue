@@ -19,9 +19,8 @@
         <p>I honestly thought it would be nice to share my limited knowledge of handling events in
             and eventBus in this test, but it ended up biting me in the butt. I should have just
             gone the simple route to begin with.</p>
-        <p>Also, I didn't take the time to disable Add To Cart buttons so that you couldn't add
-          multiiples of the same product to the cart.<br/> Nor did I guard against adding more
-          quanitities of an item that there are available in stock.</p>
+        <p>I did not guard against adding more quanitities of an item to the cart than there are
+          available in stock.</p>
           <p>Test coverage = 0%</p>
         <p>Thanks! ~Matt Kindness</p>
       </v-flex>
