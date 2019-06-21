@@ -37,7 +37,7 @@ export default new Vuex.Store({
       state.cart = _.filter(state.cart, i => i.itemid !== item.itemid);
     },
     updateQuantity(state, payload) {
-      const itemToUpdate = state.cart.find((i) => { return i.itemid === payload.item.itemid; });
+      const itemToUpdate = state.cart.find(i => i.itemid === payload.item.itemid);
       itemToUpdate.cartQuantity = payload.quantity;
     },
   },
@@ -45,7 +45,7 @@ export default new Vuex.Store({
     addItem({ commit }, payload) {
       commit('addItem', payload);
     },
-    loadItems({ commit }, payload = null) {
+    loadItems({ commit }) {
       const items = [
         {
           image: 'https://media.sweetwater.com/images/items/120/SM57-medium.jpg',

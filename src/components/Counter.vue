@@ -14,8 +14,8 @@ export default {
   props: {
     count: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
-}
+};
 </script>

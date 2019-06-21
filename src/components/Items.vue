@@ -19,7 +19,8 @@
             <p><strong>Price: {{ '$' + item.price }}</strong></p>
             <v-layout>
               <v-flex xs12 pa-2>
-                <v-btn class="add-cart" depressed color="indigo white--text" @click="addToCart(item)">Add To Cart</v-btn>
+                <v-btn class="add-cart" depressed color="indigo white--text"
+                @click="addToCart(item)">Add To Cart</v-btn>
               </v-flex>
             </v-layout>
           </v-flex>
@@ -31,34 +32,31 @@
 </template>
 
 <script>
-  import eventBus from '@utils/event-bus';
-  import _ from 'underscore'
+import eventBus from '@utils/event-bus';
 
-  export default {
-    props: {
-      items: {
-        type: Array,
-        default: () => {
-          return []
-        }
-      },
+export default {
+  props: {
+    items: {
+      type: Array,
+      default: () => [],
     },
-    data() {
-      return {
-        quantity: null,
-      }
+  },
+  data() {
+    return {
+      quantity: null,
+    };
+  },
+  methods: {
+    addToCart(item) {
+      // @TODO check if item is in cart and disable button.
+      item.cartQuantity = 1;
+      eventBus.$emit('addToCart', item);
     },
-    methods: {
-      addToCart(item) {
-        // @TODO check if item is in cart and disable button.
-        item.cartQuantity = 1;
-        eventBus.$emit('addToCart', item);
-      },
-      updateQuantity(item, quantity) {
-        eventBus.$emit('updateQuantity', { item, quantity })
-      }
+    updateQuantity(item, quantity) {
+      eventBus.$emit('updateQuantity', { item, quantity });
     },
-  }
+  },
+};
 </script>
 
 <style lang="scss">

@@ -1,7 +1,8 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
-      <v-menu class="cart" menu-props="offsetY" :close-on-content-click="false" open-on-hover center bottom transition="slide-y-transition">
+      <v-menu class="cart" menu-props="offsetY" :close-on-content-click="false" open-on-hover center
+      bottom transition="slide-y-transition">
         <Counter slot="activator" :count="count" />
         <ul class="cart__items">
           <li v-for="(item, index) in cart" :key="index">
@@ -16,7 +17,8 @@
                 {{ item.productName }}
               </v-flex>
               <v-flex xs2 pa-2>
-                <v-text-field type="number" label="Quantity" :value="item.cartQuantity" @input="updateQuantity(item, $event)"></v-text-field>
+                <v-text-field type="number" label="Quantity" :value="item.cartQuantity"
+                @input="updateQuantity(item, $event)"></v-text-field>
               </v-flex>
               <v-flex xs2 pa-2>
                 {{ '$' + item.price * item.cartQuantity }}
@@ -49,10 +51,8 @@ export default {
   props: {
     cart: {
       type: Array,
-      default: () => {
-        return []
-      }
-    }
+      default: () => [],
+    },
   },
   computed: {
     count() {
@@ -60,7 +60,7 @@ export default {
     },
     subTotal() {
       return this.calcSubTotal();
-    }
+    },
   },
   methods: {
     // @TODO Need to investigate this more.
@@ -69,8 +69,8 @@ export default {
     calcSubTotal() {
       let amount = null;
       this.cart.forEach((item) => {
-        let price = item.price * item.cartQuantity;
-        amount = amount + price;
+        const price = item.price * item.cartQuantity;
+        amount += price;
       });
       return amount;
     },
@@ -79,10 +79,10 @@ export default {
     },
     updateQuantity(item, quantity) {
       // @TODO check to see it the quantity is >=  available stock.
-      eventBus.$emit('updateQuantity', { item, quantity })
+      eventBus.$emit('updateQuantity', { item, quantity });
     },
   },
-}
+};
 </script>
 
 <style lang="scss">

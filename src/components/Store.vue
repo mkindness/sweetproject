@@ -19,20 +19,16 @@
 </template>
 
 <script>
-  import Items from '@components/Items.vue';
-  import Cart from '@components/Cart.vue';
-  import eventBus from '@utils/event-bus';
-  import { mapGetters } from 'vuex';
-  import _ from 'underscore';
+import Items from '@components/Items.vue';
+import Cart from '@components/Cart.vue';
+import eventBus from '@utils/event-bus';
+import { mapGetters } from 'vuex';
+import _ from 'underscore';
 
 export default {
   components: {
     Items,
     Cart,
-  },
-  data() {
-    return {
-    };
   },
   computed: mapGetters([
     'items',
@@ -56,7 +52,7 @@ export default {
     async dispatchAction(action, payload) {
       await this.$store.dispatch(action, payload);
     },
-  }
+  },
 };
 </script>
 
