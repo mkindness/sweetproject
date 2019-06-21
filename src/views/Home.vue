@@ -1,18 +1,17 @@
 <template>
-  <Start :msg="msg" />
+  <v-container>
+    <v-layout row wrap>
+      <Store />
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import Start from '@components/Start.vue';
+import Store from '@components/Store.vue';
 
 export default {
   components: {
-    Start,
-  },
-  data() {
-    return {
-      msg: 'Start Here!',
-    }
+    Store,
   },
 };
 </script>

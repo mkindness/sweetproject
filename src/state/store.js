@@ -24,17 +24,18 @@ export default new Vuex.Store({
       state.cart.push(item);
     },
     loadItems(state, items) {
-      state.items.push(items);
+      // state.items.push(items);
+      state.items = items;
     },
     removeItem(state, item) {
-      state.cart = _.filter(state.items, i => i.itemid === item.itemid);
+      // state.cart = _.filter(state.items, i => i.itemid === item.itemid);
     },
   },
   actions: {
     addItem({ commit }, payload) {
       commit('addItem', payload);
     },
-    loadItems({ commit }) {
+    loadItems({ commit }, payload = null) {
       const items = [
         {
           image: 'https://media.sweetwater.com/images/items/120/SM57-medium.jpg',
