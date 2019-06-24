@@ -74,7 +74,7 @@ export default {
       this.$store.dispatch('removeItem', item);
     },
     updateQuantity(item, quantity) {
-      // @TODO check to see it the quantity is >=  available stock.
+      // @TODO check to see if the quantity is >=  available stock.
       this.$store.dispatch('updateQuantity', { item, quantity });
     },
     calcCartCount() {
