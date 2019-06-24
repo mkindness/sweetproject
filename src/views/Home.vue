@@ -19,8 +19,6 @@
         <p>I honestly thought it would be nice to share my limited knowledge of handling events in
             and eventBus in this test, but it ended up biting me in the butt. I should have just
             gone the simple route to begin with.</p>
-        <p>I did not guard against adding more quanitities of an item to the cart than there are
-          available in stock.</p>
           <p>Test coverage = 0%</p>
         <p>Thanks! ~Matt Kindness</p>
       </v-flex>

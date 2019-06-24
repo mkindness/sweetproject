@@ -18,7 +18,7 @@
               </v-flex>
               <v-flex xs2 pa-2>
                 <v-text-field type="number" label="Quantity" :value="item.cartQuantity"
-                @input="updateQuantity(item, $event)"></v-text-field>
+                @input="updateQuantity(item, $event)" :max="item.available"></v-text-field>
               </v-flex>
               <v-flex xs2 pa-2>
                 {{ '$' + item.price * item.cartQuantity }}
