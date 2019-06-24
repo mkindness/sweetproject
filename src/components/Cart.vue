@@ -76,6 +76,10 @@ export default {
     updateQuantity(item, quantity) {
       // @TODO check to see if the quantity is >=  available stock.
       this.$store.dispatch('updateQuantity', { item, quantity });
+      // I don't think this is the best UX, but it works.
+      if (item.cartQuantity === "0") {
+        this.removeItem(item);
+      }
     },
     calcCartCount() {
       const sum = this.cart.reduce((s, f) => s + +f.cartQuantity, 0);
