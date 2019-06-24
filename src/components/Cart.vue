@@ -4,31 +4,36 @@
       <v-menu class="cart" menu-props="offsetY" :close-on-content-click="false" open-on-hover center
       bottom transition="slide-y-transition">
         <Counter slot="activator" :count="count" />
-        <ul class="cart__items">
-          <li v-for="(item, index) in cart" :key="index">
-            <v-layout row wrap>
-              <v-flex class="text-center" xs2 pa-2>
-                <img :src="item.image" />
-              </v-flex>
-              <v-flex xs2 pa-2>
-                {{ item.manufacturer }}
-              </v-flex>
-              <v-flex xs2 pa-2>
-                {{ item.productName }}
-              </v-flex>
-              <v-flex xs2 pa-2>
-                <v-text-field type="number" label="Quantity" :value="item.cartQuantity"
-                @input="updateQuantity(item, $event)" :max="item.available"></v-text-field>
-              </v-flex>
-              <v-flex xs2 pa-2>
-                {{ '$' + item.price * item.cartQuantity }}
-              </v-flex>
-              <v-flex xs2 pa-2>
-                <v-icon @click="removeItem(item)">fas fa-times-circle</v-icon>
-              </v-flex>
-            </v-layout>
-          </li>
-        </ul>
+        <div class="cart__items" v-if="isEmpty(cart)">
+          <p style="display: block; text-align: center; margin: 0; padding: 24px 0;">You cart is empty, bro!</p>
+        </div>
+        <div class="cart__items" v-else>
+          <ul>
+            <li v-for="(item, index) in cart" :key="index">
+              <v-layout row wrap>
+                <v-flex class="text-center" xs2 pa-2>
+                  <img :src="item.image" />
+                </v-flex>
+                <v-flex xs2 pa-2>
+                  {{ item.manufacturer }}
+                </v-flex>
+                <v-flex xs2 pa-2>
+                  {{ item.productName }}
+                </v-flex>
+                <v-flex xs2 pa-2>
+                  <v-text-field type="number" label="Quantity" :value="item.cartQuantity"
+                  @input="updateQuantity(item, $event)" :max="item.available"></v-text-field>
+                </v-flex>
+                <v-flex xs2 pa-2>
+                  {{ '$' + item.price * item.cartQuantity }}
+                </v-flex>
+                <v-flex xs2 pa-2>
+                  <v-icon @click="removeItem(item)">fas fa-times-circle</v-icon>
+                </v-flex>
+              </v-layout>
+            </li>
+          </ul>
+        </div>
         <v-layout style="background-color: white;" row>
           <v-flex xs12 pa-2>
             <p style="display: block; text-align: right;">Subtotal: {{ '$' + subTotal }}</p>
@@ -42,6 +47,7 @@
 
 <script>
 import Counter from '@components/Counter.vue';
+import _ from 'underscore'
 
 export default {
   components: {
@@ -69,6 +75,9 @@ export default {
         amount += price;
       });
       return amount;
+    },
+    isEmpty(params) {
+      return _.isEmpty(params)
     },
     removeItem(item) {
       this.$store.dispatch('removeItem', item);
