@@ -31,7 +31,7 @@
         </ul>
         <v-layout style="background-color: white;" row>
           <v-flex xs12 pa-2>
-            <p style="display: block; text-align: right;">Subtotal: {{ subTotal }}</p>
+            <p style="display: block; text-align: right;">Subtotal: {{ '$' + subTotal }}</p>
           </v-flex>
         </v-layout>
       </v-menu>
@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     calcSubTotal() {
-      let amount = null;
+      let amount = 0;
       this.cart.forEach((item) => {
         const price = item.price * item.cartQuantity;
         amount += price;
