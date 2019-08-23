@@ -21,7 +21,7 @@
 <script>
 import Items from '@components/Items.vue';
 import Cart from '@components/Cart.vue';
-import { mapGetters } from 'vuex';
+import { mapState } from 'vuex';
 import _ from 'underscore';
 
 export default {
@@ -29,7 +29,7 @@ export default {
     Items,
     Cart,
   },
-  computed: mapGetters([
+  computed: mapState([
     'items',
     'cart',
   ]),

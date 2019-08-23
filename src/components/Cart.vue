@@ -47,7 +47,7 @@
 
 <script>
 import Counter from '@components/Counter.vue';
-import _ from 'underscore'
+import _ from 'underscore';
 
 export default {
   components: {
@@ -77,7 +77,7 @@ export default {
       return amount;
     },
     isEmpty(params) {
-      return _.isEmpty(params)
+      return _.isEmpty(params);
     },
     removeItem(item) {
       this.$store.dispatch('removeItem', item);
@@ -86,7 +86,7 @@ export default {
       // @TODO check to see if the quantity is >=  available stock.
       this.$store.dispatch('updateQuantity', { item, quantity });
       // I don't think this is the best UX, but it works.
-      if (item.cartQuantity === "0") {
+      if (item.cartQuantity === '0') {
         this.removeItem(item);
       }
     },
